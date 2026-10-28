@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f8" />
+  <title>ParkEase — Find your parking spot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="ParkEase home">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span>park<span class="brand-accent">ease</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#find-parking">Find parking</a>
+      <a class="nav-link" href="#my-bookings">My bookings <span id="booking-count" class="nav-count">0</span></a>
+    </nav>
+    <div class="header-note"><span class="status-dot"></span> Demo experience</div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> PARKING, WITHOUT THE GUESSWORK</div>
+        <h1 id="hero-title">Your spot is<br /> <span>waiting.</span></h1>
+        <p>Find a convenient space, check availability, and reserve your parking in just a few clicks.</p>
+        <a class="hero-link" href="#find-parking">Explore available spots <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle circle-back"></div>
+        <div class="art-circle circle-front"></div>
+        <div class="parking-sign"><span>P</span><small>PARKING</small></div>
+        <div class="art-car"><div class="car-window"></div><div class="car-wheel wheel-one"></div><div class="car-wheel wheel-two"></div></div>
+        <div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✳</div>
+        <div class="art-caption">A better way to<br /><strong>park your day.</strong></div>
+      </div>
+    </section>
+
+    <section class="booking-panel" id="find-parking" aria-labelledby="search-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">PLAN AHEAD</p>
+          <h2 id="search-title">Find your parking</h2>
+        </div>
+        <span class="demo-tag">Sample parking lot</span>
+      </div>
+      <form id="search-form" class="search-form">
+        <label class="search-field location-field">
+          <span class="field-icon" aria-hidden="true">⌖</span>
+          <span class="field-content"><span class="field-label">LOCATION</span><span class="field-value">Riverside Campus</span></span>
+        </label>
+        <label class="search-field">
+          <span class="field-icon" aria-hidden="true">▦</span>
+          <span class="field-content"><span class="field-label">PARKING DATE</span><input id="booking-date" type="date" required /></span>
+        </label>
+        <label class="search-field">
+          <span class="field-icon" aria-hidden="true">◷</span>
+          <span class="field-content"><span class="field-label">ARRIVAL</span><input id="start-time" type="time" value="09:00" required /></span>
+        </label>
+        <label class="search-field">
+          <span class="field-icon" aria-hidden="true">◷</span>
+          <span class="field-content"><span class="field-label">LEAVE BY</span><input id="end-time" type="time" value="12:00" required /></span>
+        </label>
+        <button class="primary-button search-button" type="submit">Check availability <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="search-message" class="form-message" aria-live="polite"></p>
+    </section>
+
+    <section class="availability-section" aria-labelledby="availability-title">
+      <div class="results-heading">
+        <div>
+          <p class="section-kicker">RIVERSIDE CAMPUS · LEVELS 1–2</p>
+          <h2 id="availability-title">Available parking spots</h2>
+        </div>
+        <label class="filter-label" for="spot-filter">Filter spots
+          <select id="spot-filter">
+            <option value="all">All vehicle types</option>
+            <option value="standard">Standard</option>
+            <option value="accessible">Accessible</option>
+            <option value="electric">Electric</option>
+          </select>
+        </label>
+      </div>
+      <div class="availability-summary">
+        <span class="summary-icon" aria-hidden="true">✓</span>
+        <span><strong id="available-count">0 spots available</strong><small id="selected-period">Choose a date and time to check availability.</small></span>
+        <span class="legend"><i class="legend-dot available-dot"></i> Available <i class="legend-dot taken-dot"></i> Unavailable</span>
+      </div>
+      <div id="spot-grid" class="spot-grid" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <span aria-hidden="true">⌕</span><h3>No spots match this filter</h3><p>Try another vehicle type to see more options.</p>
+      </div>
+    </section>
+
+    <section class="my-bookings-section" id="my-bookings" aria-labelledby="bookings-title">
+      <div class="results-heading">
+        <div><p class="section-kicker">YOUR PLANS</p><h2 id="bookings-title">My bookings</h2></div>
+        <span class="demo-tag">Saved in this browser</span>
+      </div>
+      <div id="bookings-list" class="bookings-list"></div>
+      <div id="bookings-empty" class="bookings-empty"><span aria-hidden="true">▤</span><p>You haven't reserved a spot yet.</p><a href="#find-parking">Find a parking spot <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <footer class="footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true">P</span><span>park<span class="brand-accent">ease</span></span></a><span>Parking made a little easier.</span><span class="footer-demo">Frontend demo · No payment required</span></footer>
+  </main>
+
+  <dialog id="booking-dialog" class="booking-dialog" aria-labelledby="dialog-title">
+    <form id="booking-form" method="dialog">
+      <button class="dialog-close" type="button" id="close-dialog" aria-label="Close booking form">×</button>
+      <p class="section-kicker">CONFIRM YOUR SPOT</p>
+      <h2 id="dialog-title">Reserve parking</h2>
+      <p id="dialog-spot-detail" class="dialog-detail"></p>
+      <label class="input-label" for="driver-name">Your name</label>
+      <input id="driver-name" name="driverName" type="text" maxlength="60" autocomplete="name" placeholder="e.g. Alex Morgan" required />
+      <label class="input-label" for="vehicle-number">Vehicle registration</label>
+      <input id="vehicle-number" name="vehicleNumber" type="text" maxlength="15" placeholder="e.g. AB12 CDE" required />
+      <p id="dialog-error" class="dialog-error" role="alert"></p>
+      <button class="primary-button dialog-submit" type="submit">Confirm reservation <span aria-hidden="true">→</span></button>
+      <p class="dialog-footnote">This demonstration stores bookings only in your browser.</p>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
